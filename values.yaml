@@ -1,0 +1,27 @@
+## Images
+image:
+  registry: gcr.io
+  repository: google-samples/microservices-demo/adservice
+  tag: v0.1.0
+  pullPolicy: Always
+  port: 9555
+  cmd: ["/bin/grpc_health_probe", "-addr=:9555"]
+
+global:
+  imageRegistry: gcr.io
+  name: adservice
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 180Mi
+  limits:
+    cpu: 300m
+    memory: 300Mi
+
+service:
+  type: ClusterIP
+  ports:
+    - name: grpc
+      port: 9555
+      targetPort: 9555
